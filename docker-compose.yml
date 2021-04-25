@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  exanubes-database:
+    image: postgres:12-alpine
+    container_name: exanubes-database
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_PASSWORD=exanubes
+      - POSTGRES_USER=exanubes
+      - POSTGRES_DB=exanubes-prod
+    volumes:
+      - ./postgres-data:/var/lib/postgesql/data

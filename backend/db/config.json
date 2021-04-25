@@ -1,0 +1,9 @@
+{
+  "production": {
+    "username": "exanubes",
+    "password": "exanubes",
+    "database": "exanubes-prod",
+    "host": "database",
+    "dialect": "postgres"
+  }
+}

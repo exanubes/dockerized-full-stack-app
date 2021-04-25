@@ -35,3 +35,27 @@ services:
       - "3001:3001"
     environment:
       - REST_API_URL=http://backend:3000
+
+  test-database:
+    image: postgres:12-alpine
+    container_name: exanubes-test-database
+    profiles: ["test"]
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=exanubes
+      - POSTGRES_USER=exanubes
+      - POSTGRES_DB=exanubes-db-test
+
+  dev-database:
+    image: postgres:12-alpine
+    container_name: exanubes-dev-database
+    profiles: ["dev"]
+    ports:
+      - "5431:5432"
+    environment:
+      - POSTGRES_PASSWORD=exanubes
+      - POSTGRES_USER=exanubes
+      - POSTGRES_DB=exanubes-db-dev
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data

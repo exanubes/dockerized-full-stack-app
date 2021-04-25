@@ -10,7 +10,7 @@ import { getBaseUrl } from "../api/getBaseUrl"
 const IndexPage = () => {
   const [users, setUsers] = useState([])
   useEffect(() => {
-    fetch(`${getBaseUrl()}/users`)
+    fetch(`${getBaseUrl()}/user`)
       .then(res => res.json())
       .then(setUsers)
       .catch(console.error)

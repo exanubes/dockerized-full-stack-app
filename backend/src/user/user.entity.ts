@@ -4,9 +4,13 @@ import {
   CreatedAt,
   Model,
   PrimaryKey,
+  Table,
   UpdatedAt,
 } from 'sequelize-typescript';
 
+@Table({
+  tableName: 'users',
+})
 export class User extends Model<User> {
   @PrimaryKey
   @AutoIncrement

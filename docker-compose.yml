@@ -12,3 +12,26 @@ services:
       - POSTGRES_DB=exanubes-prod
     volumes:
       - ./postgres-data:/var/lib/postgesql/data
+  exanubes-backend:
+    restart: always
+    build: ./backend
+    container_name: exanubes-backend
+    links:
+      - "exanubes-database:database"
+    depends_on:
+      - exanubes-database
+    environment:
+      - DB_USER=exanubes
+      - DB_PASSWORD=exanubes
+      - DB_NAME=exanubes-prod
+      - DB_HOST=database
+  exanubes-frontend:
+    restart: always
+    build: ./frontend
+    container_name: exanubes-frontend
+    links:
+      - "exanubes-backend:backend"
+    ports:
+      - "3001:3001"
+    environment:
+      - REST_API_URL=http://backend:3000
